@@ -1,0 +1,107 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "photoURL": { "type": "string", "maxLength": 500 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "state": { "type": "string", "maxLength": 50 },
+        "walletBalance": { "type": "number" },
+        "vipStatus": { "type": "string", "maxLength": 20 },
+        "lastCheckInDate": { "type": "string", "maxLength": 20 },
+        "checkInStreak": { "type": "number" },
+        "spinsLeftToday": { "type": "number" }
+      },
+      "required": ["displayName", "email", "createdAt"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "User wallet deposit, withdrawal, or ticket purchase transaction",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string" },
+        "reference": { "type": "string", "maxLength": 100 },
+        "paymentMethod": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "type", "amount", "status", "createdAt"]
+    },
+    "Ticket": {
+      "title": "Ticket",
+      "description": "User purchased lottery ticket record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "drawId": { "type": "string", "maxLength": 50 },
+        "lotteryName": { "type": "string", "maxLength": 100 },
+        "ticketNumber": { "type": "string", "maxLength": 20 },
+        "price": { "type": "number" },
+        "purchaseDate": { "type": "string" },
+        "drawDate": { "type": "string" },
+        "status": { "type": "string" },
+        "prizeWon": { "type": "number" }
+      },
+      "required": ["userId", "drawId", "lotteryName", "ticketNumber", "price", "purchaseDate", "status"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification item",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 100 },
+        "message": { "type": "string", "maxLength": 300 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "type": { "type": "string", "maxLength": 30 }
+      },
+      "required": ["userId", "title", "message", "read", "createdAt"]
+    },
+    "SupportRequest": {
+      "title": "Support Request",
+      "description": "Customer support submission",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "subject": { "type": "string", "maxLength": 150 },
+        "message": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "name", "email", "subject", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile collection"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User transactions collection"
+    },
+    "/tickets/{ticketId}": {
+      "schema": "Ticket",
+      "description": "User purchased tickets collection"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notifications collection"
+    },
+    "/supportRequests/{requestId}": {
+      "schema": "SupportRequest",
+      "description": "Support requests collection"
+    }
+  }
+}

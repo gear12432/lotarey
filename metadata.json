@@ -1,0 +1,6 @@
+{
+  "name": "Kerala Lottery Live",
+  "description": "Mobile-first Kerala Lottery Live User Application with live results, ticket updates, check-in rewards, lucky spin, and wallet management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
